@@ -32,7 +32,10 @@ def retrieve_all_repos(
     """Retrieve all repositories for a given organization."""
     base_url = f"https://api.github.com/orgs/{organization}/repos?per_page=100"
     logger.info(f"Fetching repositories for organization: {organization}")
-    logger.info(f"Using token: {'Yes' if token else 'No'}")
+    if token:
+        logger.info("Using provided GitHub token for authentication.")
+    else:
+        logger.warning("No GitHub token provided; fetching public repositories only.")
 
     headers = (
         {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github.v3+json"}
@@ -102,9 +105,9 @@ def main():
             repo_name = repo["name"]
             status.update(f"Processing repository {i}: {repo_name}")
             logger.info(f"Cloning and creating bundle for repository: {repo_name}")
-            backup_repo(
-                f"https://{token}@github.com/{organization}/{repo_name}.git", bundle_dir
-            )
+            repo_url = f"https://{token}@" if token else "https://"
+            repo_url += f"github.com/{organization}/{repo_name}.git"
+            backup_repo(repo_url, bundle_dir)
 
     console.print(
         "[bold green]All repositories have been backed up successfully![/bold green]"
