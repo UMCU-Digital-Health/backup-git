@@ -103,7 +103,7 @@ def main():
             status.update(f"Processing repository {i}: {repo_name}")
             logger.info(f"Cloning and creating bundle for repository: {repo_name}")
             backup_repo(
-                f"https://github.com/{organization}/{repo_name}.git", bundle_dir
+                f"https://{token}@github.com/{organization}/{repo_name}.git", bundle_dir
             )
 
     console.print(
