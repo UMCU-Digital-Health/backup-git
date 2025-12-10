@@ -40,9 +40,10 @@ To schedule this script to run periodically, you can use cron jobs as follows:
 crontab -e
 ```
 
-Add the following line to run the script daily at 3 AM:
-```bash
-0 3 * * * path/to/uv run /path/to/your/script/main.py >> /path/to/your/logfile.log 2>&1
+And add the following line to run the script daily at 3 AM:
+
+```crontab
+0 3 * * * path/to/venv/bin/python /path/to/your/script/main.py > /path/to/your/logfile.log 2>&1
 ```
 
 
