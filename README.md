@@ -46,6 +46,10 @@ And add the following line to run the script daily at 3 AM:
 0 3 * * * path/to/venv/bin/python /path/to/your/script/main.py > /path/to/your/logfile.log 2>&1
 ```
 
+## Get a Fine-grained token on GitHub
+
+To get a fine-grained token on GitHub go to https://github.com/settings/personal-access-tokens and generate a new token that requires read-only access on contents of all repositories.
+
 
 ## License
 

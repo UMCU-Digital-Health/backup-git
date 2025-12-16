@@ -98,7 +98,7 @@ def main():
 
     with console.status("Retrieving repositories...") as status:
         repos = retrieve_all_repos(organization, token)
-        bundle_dir = Path("bundles")
+        bundle_dir = Path(__file__).parent / "bundles"
         bundle_dir.mkdir(exist_ok=True)
 
         for i, repo in enumerate(repos):
